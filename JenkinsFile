@@ -45,6 +45,11 @@ pipeline {
                 '''
             }
         }
+        stage('Clean .csproj.user') {
+            steps {
+                bat 'del ProductService\\ProductService.csproj.user'  // Use 'rm' if on Linux agent
+            }
+        }
          stage('Build .NET App') {
             steps {
                 dir('ProductService') { // Adjust to your .NET project folder
