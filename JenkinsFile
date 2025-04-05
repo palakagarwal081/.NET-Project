@@ -49,6 +49,9 @@ pipeline {
             steps {
                 dir('ProductService') { // Adjust to your .NET project folder
                     bat 'if exist ProductService.csproj.user del ProductService.csproj.user'
+                    bat 'if exist publish\\publish rmdir /S /Q publish\\publish'
+                    
+                    bat 'dotnet build ProductService.csproj --configuration Release'
                     bat 'dotnet publish -c Release -o publish'
                 }
             }
